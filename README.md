@@ -69,7 +69,7 @@ API-Testing-for-Student-Details/
 │   └── Rest_API_Testing_For_Student_Details.html
 │
 ├── assets/
-│   └── Newman Summary Report.png
+│   └── newman-dashboard.png
 │
 ├── Newman Summary Report.pdf
 │
