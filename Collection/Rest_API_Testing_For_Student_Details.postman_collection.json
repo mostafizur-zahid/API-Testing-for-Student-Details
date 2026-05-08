@@ -1,0 +1,1008 @@
+{
+  "info": {
+    "_postman_id": "0b3d8152-e4e9-416e-9678-2ac6057725f6",
+    "name": "Rest_API_Testing_For_Student_Details",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53755782",
+    "_collection_link": "https://go.postman.co/collection/53755782-0b3d8152-e4e9-416e-9678-2ac6057725f6?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "GetStudentList",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Assertion for the response status code",
+              "pm.test(\"Verify the response code 200 or Not\", function(){",
+              "    pm.expect(pm.response.code).to.eql(200);",
+              "})",
+              "",
+              "pm.test(\"Verify the response time as expected or Not\", function(){",
+              "    pm.expect(pm.response.responseTime).to.be.below(30000);",
+              "})",
+              "",
+              "pm.test(\"Verify the response file size as expected or Not\", function(){",
+              "    pm.expect(pm.response.responseSize).to.be.below(500000);",
+              "})",
+              "",
+              "pm.test(\"Response file JSON or Not\", function(){",
+              "    pm.response.to.be.json;",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/studentsDetails",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "studentsDetails"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "CreateStudent",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "var first_name = pm.variables.replaceIn('{{$randomNamePrefix}}');",
+              "pm.environment.set(\"first_name\", first_name);",
+              "",
+              "var middle_name = pm.variables.replaceIn('{{$randomFirstName}}');",
+              "pm.environment.set(\"middle_name\", middle_name);",
+              "",
+              "var last_name = pm.variables.replaceIn('{{$randomLastName}}');",
+              "pm.environment.set(\"last_name\", last_name);",
+              "",
+              "var date_of_birth = \"22-06-2002\";",
+              "pm.environment.set(\"date_of_birth\", date_of_birth);",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var responseBody = pm.response.json(); ",
+              "pm.environment.set(\"id\", responseBody.id);",
+              "",
+              "// Assertion for the response status code",
+              "pm.test(\"Verify the response code 201 or Not\", function(){",
+              "    pm.expect(pm.response.code).to.eql(201);",
+              "})",
+              "",
+              "pm.test(\"Verify the response time as expected or Not\", function(){",
+              "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+              "})",
+              "",
+              "pm.test(\"Verify the response file size as expected or Not\", function(){",
+              "    pm.expect(pm.response.responseSize).to.be.below(50000);",
+              "});",
+              "",
+              "pm.test(\"Response file JSON or Not\", function(){",
+              "    pm.response.to.be.json;",
+              "});",
+              "",
+              "",
+              "",
+              "var responseBody = pm.response.json(); ",
+              "console.log(responseBody);",
+              "",
+              "pm.test(\"Verify the id\", function(){",
+              "    pm.expect(pm.environment.get(\"id\")).to.eql(responseBody.id);",
+              "})",
+              "",
+              "pm.test(\"Verify the firstname\", function(){",
+              "    pm.expect(pm.environment.get(\"first_name\")).to.eql(responseBody.first_name);",
+              "});",
+              "",
+              "pm.test(\"Verify the middlename\", function(){",
+              "    pm.expect(pm.environment.get(\"middle_name\")).to.eql(responseBody.middle_name);",
+              "})",
+              "",
+              "pm.test(\"Verify the lastname\", function(){",
+              "    pm.expect(pm.environment.get(\"last_name\")).to.eql(responseBody.last_name);",
+              "});",
+              "",
+              "pm.test(\"Verify date of birth\", function () {",
+              "    pm.expect(pm.environment.get(\"date_of_birth\")).to.eql(responseBody.date_of_birth);",
+              "});",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"first_name\": \"{{first_name}}\",\n  \"middle_name\": \"{{middle_name}}\",\n  \"last_name\": \"{{last_name}}\",\n  \"date_of_birth\": \"{{date_of_birth}}\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/studentsDetails",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "studentsDetails"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Specific Student",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Assertion for the response status code",
+              "pm.test(\"Verify the response code 200 or Not\", function(){",
+              "    pm.expect(pm.response.code).to.eql(200);",
+              "})",
+              "",
+              "pm.test(\"Verify the response time as expected or Not\", function(){",
+              "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+              "})",
+              "",
+              "pm.test(\"Verify the response file size as expected or Not\", function(){",
+              "    pm.expect(pm.response.responseSize).to.be.below(50000);",
+              "})",
+              "",
+              "pm.test(\"Response file JSON or Not\", function(){",
+              "    pm.response.to.be.json;",
+              "});",
+              "",
+              "var responseBody = pm.response.json(); ",
+              "console.log(responseBody);",
+              "",
+              "",
+              "pm.test(\"Verify current status\", function () {",
+              "    pm.expect(responseBody.status).to.eql(\"true\");",
+              "});",
+              "",
+              "pm.test(\"Verify the firstname\", function(){",
+              "    pm.expect(pm.environment.get(\"first_name\")).to.eql(responseBody.data.first_name);",
+              "});",
+              "",
+              "pm.test(\"Verify the middlename\", function(){",
+              "    pm.expect(pm.environment.get(\"middle_name\")).to.eql(responseBody.data.middle_name);",
+              "})",
+              "",
+              "pm.test(\"Verify the lastname\", function(){",
+              "    pm.expect(pm.environment.get(\"last_name\")).to.eql(responseBody.data.last_name);",
+              "});",
+              "",
+              "pm.test(\"Verify date of birth\", function () {",
+              "    pm.expect(pm.environment.get(\"date_of_birth\")).to.eql(responseBody.data.date_of_birth);",
+              "});",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/studentsDetails/{{id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "studentsDetails",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "UpdateStudent",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Assertion for the response status code",
+              "pm.test(\"Verify the response code 200 or Not\", function(){",
+              "    pm.expect(pm.response.code).to.eql(200);",
+              "})",
+              "",
+              "pm.test(\"Verify the response time as expected or Not\", function(){",
+              "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+              "})",
+              "",
+              "pm.test(\"Verify the response file size as expected or Not\", function(){",
+              "    pm.expect(pm.response.responseSize).to.be.below(50000);",
+              "})",
+              "",
+              "pm.test(\"Response file JSON or Not\", function(){",
+              "    pm.response.to.be.json;",
+              "});",
+              "",
+              "var responseBody = pm.response.json(); ",
+              "console.log(responseBody);",
+              "",
+              "pm.test(\"Verify current status\", function () {",
+              "    pm.expect(responseBody.status).to.eql(\"true\");",
+              "});",
+              "",
+              "pm.test(\"Notify Message Verify\", function(){",
+              "    pm.expect(responseBody.msg).to.eql(\"update  data success\");",
+              "});",
+              "",
+              "// pm.test(\"Verify the firstname\", function(){",
+              "//     pm.expect(pm.environment.get(\"first_name\")).to.eql(responseBody.data.first_name);",
+              "// });",
+              "",
+              "// pm.test(\"Verify the middlename\", function(){",
+              "//     pm.expect(pm.environment.get(\"middle_name\")).to.eql(responseBody.data.middle_name);",
+              "// })",
+              "",
+              "// pm.test(\"Verify the lastname\", function(){",
+              "//     pm.expect(pm.environment.get(\"last_name\")).to.eql(responseBody.data.last_name);",
+              "// });",
+              "",
+              "// pm.test(\"Verify date of birth\", function () {",
+              "//     pm.expect(pm.environment.get(\"date_of_birth\")).to.eql(responseBody.data.date_of_birth);",
+              "// });",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "var first_name = pm.variables.replaceIn('{{$randomNamePrefix}}');",
+              "pm.environment.set(\"first_name\", first_name);",
+              "",
+              "var middle_name = pm.variables.replaceIn('{{$randomFirstName}}');",
+              "pm.environment.set(\"middle_name\", middle_name);",
+              "",
+              "var last_name = pm.variables.replaceIn('{{$randomLastName}}');",
+              "pm.environment.set(\"last_name\", last_name);",
+              "",
+              "var date_of_birth = \"22-06-2002\";",
+              "pm.environment.set(\"date_of_birth\", date_of_birth);"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": {{id}},\n  \"first_name\": \"{{first_name}}\",\n  \"middle_name\": \"{{middle_name}}\",\n  \"last_name\": \"{{last_name}}\",\n  \"date_of_birth\": \"{{date_of_birth}}\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/studentsDetails/{{id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "studentsDetails",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Student Info Check",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Assertion for the response status code",
+              "pm.test(\"Verify the response code 200 or Not\", function(){",
+              "    pm.expect(pm.response.code).to.eql(200);",
+              "})",
+              "",
+              "pm.test(\"Verify the response time as expected or Not\", function(){",
+              "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+              "})",
+              "",
+              "pm.test(\"Verify the response file size as expected or Not\", function(){",
+              "    pm.expect(pm.response.responseSize).to.be.below(50000);",
+              "})",
+              "",
+              "pm.test(\"Response file JSON or Not\", function(){",
+              "    pm.response.to.be.json;",
+              "});",
+              "",
+              "var responseBody = pm.response.json(); ",
+              "console.log(responseBody);",
+              "",
+              "// pm.test(\"Verify current status\", function(){",
+              "//     pm.expect(pm.environment.get(\"true\") === \"true\").to.eql(responseBody.status);",
+              "// })",
+              "pm.test(\"Verify current status\", function () {",
+              "    pm.expect(responseBody.status).to.eql(\"true\");",
+              "});",
+              "",
+              "pm.test(\"Verify the firstname\", function(){",
+              "    pm.expect(pm.environment.get(\"first_name\")).to.eql(responseBody.data.first_name);",
+              "});",
+              "",
+              "pm.test(\"Verify the middlename\", function(){",
+              "    pm.expect(pm.environment.get(\"middle_name\")).to.eql(responseBody.data.middle_name);",
+              "})",
+              "",
+              "pm.test(\"Verify the lastname\", function(){",
+              "    pm.expect(pm.environment.get(\"last_name\")).to.eql(responseBody.data.last_name);",
+              "});",
+              "",
+              "pm.test(\"Verify date of birth\", function () {",
+              "    pm.expect(pm.environment.get(\"date_of_birth\")).to.eql(responseBody.data.date_of_birth);",
+              "});",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/studentsDetails/{{id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "studentsDetails",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Technical Skills",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "var skills = [",
+              "    \"Java\",",
+              "    \"Python\",",
+              "    \"C++\",",
+              "    \"JavaScript\",",
+              "    \"Go\",",
+              "    \"Rust\",",
+              "    \"PHP\",",
+              "    \"TypeScript\",",
+              "    \"Kotlin\",",
+              "    \"Swift\"",
+              "];",
+              "",
+              "// Random skills",
+              "var lang1 = skills[Math.floor(Math.random() * skills.length)];",
+              "var lang2 = skills[Math.floor(Math.random() * skills.length)];",
+              "pm.environment.set(\"lang1\", lang1);",
+              "pm.environment.set(\"lang2\", lang2);",
+              "// Random year experience",
+              "var exp = Math.floor(Math.random() * 10) + 1;",
+              "pm.environment.set(\"yearexp\", exp);",
+              "",
+              "var date = require('moment')().format('DD-MM-YYYY');",
+              "pm.environment.set(\"lastused\", date);",
+              "",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Assertion for the response status code",
+              "pm.test(\"Verify the response code 201 or Not\", function(){",
+              "    pm.expect(pm.response.code).to.eql(201);",
+              "})",
+              "",
+              "pm.test(\"Verify the response time as expected or Not\", function(){",
+              "    pm.expect(pm.response.responseTime).to.be.below(30000);",
+              "})",
+              "",
+              "pm.test(\"Verify the response file size as expected or Not\", function(){",
+              "    pm.expect(pm.response.responseSize).to.be.below(500000);",
+              "})",
+              "",
+              "pm.test(\"Response file JSON or Not\", function(){",
+              "    pm.response.to.be.json;",
+              "});",
+              "",
+              "var responseBody = pm.response.json(); ",
+              "console.log(responseBody);",
+              "",
+              "pm.test(\"Verify current status\", function () {",
+              "    pm.expect(responseBody.status).to.eql(\"true\");",
+              "});",
+              "",
+              "pm.test(\"Notify Message Verify\", function(){",
+              "    pm.expect(responseBody.msg).to.eql(\"Add  data success\");",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\n    \"id\": {{id}},\n    \"language\":\n    [\n        \"{{lang1}}\",\n        \"{{lang2}}\"\n    ],\n    \"yearexp\":\"{{yearexp}}\",\n    \"lastused\":\"{{lastused}}\",\n    \"st_id\":\"{{id}}\"\n\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/technicalskills/{{id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "technicalskills",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Student Address",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "var house_number = pm.variables.replaceIn('{{$randomInt}}');",
+              "pm.environment.set(\"house_number\", house_number);",
+              "",
+              "var city = pm.variables.replaceIn('{{$randomCity}}');",
+              "pm.environment.set(\"city\", city);",
+              "",
+              "var state = pm.variables.replaceIn('{{$randomState}}');",
+              "pm.environment.set(\"state\", state);",
+              "",
+              "var country = pm.variables.replaceIn('{{$randomCountry}}');",
+              "pm.environment.set(\"country\", country);",
+              "",
+              "var std_code1 = pm.variables.replaceIn('{{$randomInt}}');",
+              "pm.environment.set(\"std_code1\", std_code1);",
+              "",
+              "var home1 = pm.variables.replaceIn('{{$randomPhoneNumber}}');",
+              "pm.environment.set(\"home1\", home1);",
+              "",
+              "var mobile1 = pm.variables.replaceIn('{{$randomPhoneNumber}}');",
+              "pm.environment.set(\"mobile1\", mobile1);",
+              "",
+              "var std_code2 = pm.variables.replaceIn('{{$randomInt}}');",
+              "pm.environment.set(\"std_code2\", std_code2);",
+              "",
+              "var home2 = pm.variables.replaceIn('{{$randomPhoneNumber}}');",
+              "pm.environment.set(\"home2\", home2);",
+              "",
+              "var mobile2 = pm.variables.replaceIn('{{$randomPhoneNumber}}');",
+              "pm.environment.set(\"mobile2\", mobile2);",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Assertion for the response status code",
+              "pm.test(\"Verify the response code 201 or Not\", function(){",
+              "    pm.expect(pm.response.code).to.eql(201);",
+              "})",
+              "",
+              "pm.test(\"Verify the response time as expected or Not\", function(){",
+              "    pm.expect(pm.response.responseTime).to.be.below(30000);",
+              "})",
+              "",
+              "pm.test(\"Verify the response file size as expected or Not\", function(){",
+              "    pm.expect(pm.response.responseSize).to.be.below(500000);",
+              "})",
+              "",
+              "pm.test(\"Response file JSON or Not\", function(){",
+              "    pm.response.to.be.json;",
+              "});",
+              "",
+              "var responseBody = pm.response.json(); ",
+              "console.log(responseBody);",
+              "",
+              "pm.test(\"Verify current status\", function () {",
+              "    pm.expect(responseBody.status).to.eql(\"true\");",
+              "});",
+              "",
+              "pm.test(\"Notify Message Verify\", function(){",
+              "    pm.expect(responseBody.msg).to.eql(\"Add  data success\");",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"Permanent_Address\": {\n\n        \"House_Number\": \"{{house_number}}\",\n\n        \"City\": \"{{city}}\",\n\n        \"State\": \"{{state}}\",\n\n        \"Country\": \"{{country}}\",\n\n        \"PhoneNumber\": [\n\n            {\n                \"Std_Code\": \"{{std_code1}}\",\n\n                \"Home\": \"{{home1}}\",\n\n                \"Mobile\": \"{{mobile1}}\"\n            },\n\n            {\n                \"Std_Code\": \"{{std_code2}}\",\n\n                \"Home\": \"{{home2}}\",\n\n                \"Mobile\": \"{{mobile2}}\"\n            }\n        ]\n    },\n\n    \"stId\": \"{{id}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/addresses/{{id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "addresses",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "FINAL STUDENT DETAILS",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// =========================================",
+              "// Response Basic Validation",
+              "// =========================================",
+              "",
+              "pm.test(\"Verify the response code 200 or Not\", function () {",
+              "    pm.expect(pm.response.code).to.eql(200);",
+              "});",
+              "",
+              "pm.test(\"Verify the response time as expected or Not\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+              "});",
+              "",
+              "pm.test(\"Verify the response file size as expected or Not\", function () {",
+              "    pm.expect(pm.response.responseSize).to.be.below(50000);",
+              "});",
+              "",
+              "pm.test(\"Response file JSON or Not\", function () {",
+              "    pm.response.to.be.json;",
+              "});",
+              "",
+              "var responseBody = pm.response.json();",
+              "console.log(responseBody);",
+              "",
+              "",
+              "// =========================================",
+              "// Main Status Validation",
+              "// =========================================",
+              "",
+              "pm.test(\"Verify current status\", function () {",
+              "    pm.expect(responseBody.status).to.eql(\"true\");",
+              "});",
+              "",
+              "",
+              "// =========================================",
+              "// Student Basic Information Validation",
+              "// =========================================",
+              "",
+              "pm.test(\"Verify the firstname\", function () {",
+              "    pm.expect(pm.environment.get(\"first_name\"))",
+              "        .to.eql(responseBody.data.first_name);",
+              "});",
+              "",
+              "pm.test(\"Verify the middlename\", function () {",
+              "    pm.expect(pm.environment.get(\"middle_name\"))",
+              "        .to.eql(responseBody.data.middle_name);",
+              "});",
+              "",
+              "pm.test(\"Verify the lastname\", function () {",
+              "    pm.expect(pm.environment.get(\"last_name\"))",
+              "        .to.eql(responseBody.data.last_name);",
+              "});",
+              "",
+              "pm.test(\"Verify date of birth\", function () {",
+              "    pm.expect(pm.environment.get(\"date_of_birth\"))",
+              "        .to.eql(responseBody.data.date_of_birth);",
+              "});",
+              "",
+              "",
+              "// =========================================",
+              "// Technical Details Validation",
+              "// =========================================",
+              "",
+              "pm.test(\"Verify TechnicalDetails Array Exists\", function () {",
+              "    pm.expect(responseBody.data.TechnicalDetails)",
+              "        .to.be.an(\"array\");",
+              "});",
+              "",
+              "pm.test(\"Verify TechnicalDetails Array Not Empty\", function () {",
+              "    pm.expect(responseBody.data.TechnicalDetails.length)",
+              "        .to.be.above(0);",
+              "});",
+              "",
+              "pm.test(\"Verify Technical Skill First Language\", function () {",
+              "    pm.expect(pm.environment.get(\"lang1\"))",
+              "        .to.eql(responseBody.data.TechnicalDetails[0].language[0]);",
+              "});",
+              "",
+              "pm.test(\"Verify Technical Skill Second Language\", function () {",
+              "    pm.expect(pm.environment.get(\"lang2\"))",
+              "        .to.eql(responseBody.data.TechnicalDetails[0].language[1]);",
+              "});",
+              "",
+              "pm.test(\"Verify Year Experience\", function () {",
+              "    pm.expect(",
+              "        pm.environment.get(\"yearexp\").toString()",
+              "    ).to.eql(",
+              "        responseBody.data.TechnicalDetails[0]",
+              "        .yearexp.toString()",
+              "    );",
+              "});",
+              "",
+              "pm.test(\"Verify Last Used Date\", function () {",
+              "    pm.expect(pm.environment.get(\"lastused\"))",
+              "        .to.eql(responseBody.data.TechnicalDetails[0].lastused);",
+              "});",
+              "",
+              "pm.test(\"Verify Student ID in Technical Details\", function () {",
+              "    pm.expect(",
+              "        pm.environment.get(\"id\").toString()",
+              "    ).to.eql(",
+              "        responseBody.data.TechnicalDetails[0]",
+              "        .st_id.toString()",
+              "    );",
+              "});",
+              "",
+              "",
+              "// =========================================",
+              "// Address Validation",
+              "// =========================================",
+              "",
+              "pm.test(\"Verify Address Array Exists\", function () {",
+              "    pm.expect(responseBody.data.Address)",
+              "        .to.be.an(\"array\");",
+              "});",
+              "",
+              "pm.test(\"Verify Address Array Not Empty\", function () {",
+              "    pm.expect(responseBody.data.Address.length)",
+              "        .to.be.above(0);",
+              "});",
+              "",
+              "",
+              "// =========================================",
+              "// Permanent Address Validation",
+              "// =========================================",
+              "",
+              "pm.test(\"Verify House Number\", function () {",
+              "    pm.expect(pm.environment.get(\"house_number\"))",
+              "        .to.eql(",
+              "            responseBody.data.Address[0]",
+              "            .Permanent_Address.House_Number",
+              "        );",
+              "});",
+              "",
+              "pm.test(\"Verify City\", function () {",
+              "    pm.expect(pm.environment.get(\"city\"))",
+              "        .to.eql(",
+              "            responseBody.data.Address[0]",
+              "            .Permanent_Address.City",
+              "        );",
+              "});",
+              "",
+              "pm.test(\"Verify State\", function () {",
+              "    pm.expect(pm.environment.get(\"state\"))",
+              "        .to.eql(",
+              "            responseBody.data.Address[0]",
+              "            .Permanent_Address.State",
+              "        );",
+              "});",
+              "",
+              "pm.test(\"Verify Country\", function () {",
+              "    pm.expect(pm.environment.get(\"country\"))",
+              "        .to.eql(",
+              "            responseBody.data.Address[0]",
+              "            .Permanent_Address.Country",
+              "        );",
+              "});",
+              "",
+              "",
+              "// =========================================",
+              "// Phone Number Validation",
+              "// =========================================",
+              "",
+              "pm.test(\"Verify First Std Code\", function () {",
+              "    pm.expect(pm.environment.get(\"std_code1\"))",
+              "        .to.eql(",
+              "            responseBody.data.Address[0]",
+              "            .Permanent_Address.PhoneNumber[0]",
+              "            .Std_Code",
+              "        );",
+              "});",
+              "",
+              "pm.test(\"Verify First Home Number\", function () {",
+              "    pm.expect(pm.environment.get(\"home1\"))",
+              "        .to.eql(",
+              "            responseBody.data.Address[0]",
+              "            .Permanent_Address.PhoneNumber[0]",
+              "            .Home",
+              "        );",
+              "});",
+              "",
+              "pm.test(\"Verify First Mobile Number\", function () {",
+              "    pm.expect(pm.environment.get(\"mobile1\"))",
+              "        .to.eql(",
+              "            responseBody.data.Address[0]",
+              "            .Permanent_Address.PhoneNumber[0]",
+              "            .Mobile",
+              "        );",
+              "});",
+              "",
+              "pm.test(\"Verify Second Std Code\", function () {",
+              "    pm.expect(pm.environment.get(\"std_code2\"))",
+              "        .to.eql(",
+              "            responseBody.data.Address[0]",
+              "            .Permanent_Address.PhoneNumber[1]",
+              "            .Std_Code",
+              "        );",
+              "});",
+              "",
+              "pm.test(\"Verify Second Home Number\", function () {",
+              "    pm.expect(pm.environment.get(\"home2\"))",
+              "        .to.eql(",
+              "            responseBody.data.Address[0]",
+              "            .Permanent_Address.PhoneNumber[1]",
+              "            .Home",
+              "        );",
+              "});",
+              "",
+              "pm.test(\"Verify Second Mobile Number\", function () {",
+              "    pm.expect(pm.environment.get(\"mobile2\"))",
+              "        .to.eql(",
+              "            responseBody.data.Address[0]",
+              "            .Permanent_Address.PhoneNumber[1]",
+              "            .Mobile",
+              "        );",
+              "});",
+              "",
+              "",
+              "// =========================================",
+              "// Current Address Validation",
+              "// =========================================",
+              "",
+              "pm.test(\"Verify Current Address is Null\", function () {",
+              "    pm.expect(",
+              "        responseBody.data.Address[0]",
+              "        .Current_Address",
+              "    ).to.eql(null);",
+              "});",
+              "",
+              "",
+              "// =========================================",
+              "// Final Student ID Validation",
+              "// =========================================",
+              "",
+              "pm.test(\"Verify Student ID in Address\", function () {",
+              "    pm.expect(",
+              "        pm.environment.get(\"id\").toString()",
+              "    ).to.eql(",
+              "        responseBody.data.Address[0]",
+              "        .stId.toString()",
+              "    );",
+              "});",
+              "",
+              "",
+              "// =========================================",
+              "// Additional Schema Validation",
+              "// =========================================",
+              "",
+              "pm.test(\"Verify TechnicalDetails Language is Array\", function () {",
+              "    pm.expect(",
+              "        responseBody.data.TechnicalDetails[0].language",
+              "    ).to.be.an(\"array\");",
+              "});",
+              "",
+              "pm.test(\"Verify PhoneNumber is Array\", function () {",
+              "    pm.expect(",
+              "        responseBody.data.Address[0]",
+              "        .Permanent_Address.PhoneNumber",
+              "    ).to.be.an(\"array\");",
+              "});",
+              "",
+              "pm.test(\"Verify PhoneNumber Contains Two Objects\", function () {",
+              "    pm.expect(",
+              "        responseBody.data.Address[0]",
+              "        .Permanent_Address.PhoneNumber.length",
+              "    ).to.eql(2);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/FinalStudentDetails/{{id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "FinalStudentDetails",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Student Details",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Assertion for the response status code",
+              "pm.test(\"Verify the response code 200 or Not\", function(){",
+              "    pm.expect(pm.response.code).to.eql(200);",
+              "})",
+              "",
+              "pm.test(\"Verify the response time as expected or Not\", function(){",
+              "    pm.expect(pm.response.responseTime).to.be.below(30000);",
+              "})",
+              "",
+              "pm.test(\"Verify the response file size as expected or Not\", function(){",
+              "    pm.expect(pm.response.responseSize).to.be.below(500000);",
+              "})",
+              "",
+              "pm.test(\"Response file JSON or Not\", function(){",
+              "    pm.response.to.be.json;",
+              "});",
+              "",
+              "var responseBody = pm.response.json(); ",
+              "console.log(responseBody);",
+              "",
+              "pm.test(\"Verify current status\", function () {",
+              "    pm.expect(responseBody.status).to.eql(\"true\");",
+              "});",
+              "",
+              "pm.test(\"Notify Message Verify\", function(){",
+              "    pm.expect(responseBody.msg).to.eql(\"Delete  data success\");",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/studentsDetails/{{id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "studentsDetails",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
