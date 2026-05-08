@@ -1,35 +1,38 @@
+<div align="center">
+
 # 🚀 API Testing for Student Details
+
+### Professional REST API Automation Testing Framework using Postman & Newman
 
 ![Postman](https://img.shields.io/badge/Postman-API_Testing-orange?style=for-the-badge&logo=postman)
 ![Newman](https://img.shields.io/badge/Newman-Automation-blue?style=for-the-badge)
 ![JavaScript](https://img.shields.io/badge/JavaScript-Test_Scripting-yellow?style=for-the-badge&logo=javascript)
-![API Testing](https://img.shields.io/badge/REST_API-Testing-success?style=for-the-badge)
+![REST API](https://img.shields.io/badge/REST_API-Testing-success?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Project-Completed-brightgreen?style=for-the-badge)
+[![Live Report](https://img.shields.io/badge/Newman-Live_Report-success?style=for-the-badge)](https://mostafizur-zahid.github.io/API-Testing-for-Student-Details/report.html)
+
+---
+
+### 🔥 Complete End-to-End CRUD API Automation Testing Project
+
+</div>
 
 ---
 
 # 📌 Project Overview
 
-This repository contains a complete **API Automation Testing Framework** developed for testing Student Details REST APIs using:
+This repository contains a complete **REST API Automation Testing Framework** developed for testing Student Details APIs using:
 
-- Postman
-- Newman
-- JavaScript Assertions
-- Dynamic Variables
-- Environment Variables
-- Automated HTML Reporting
+- ✅ Postman
+- ✅ Newman
+- ✅ JavaScript Assertions
+- ✅ Dynamic Variables
+- ✅ Environment Variables
+- ✅ Automated HTML Reporting
+- ✅ API Chaining
+- ✅ Runtime Data Injection
 
-The project demonstrates real-world API automation workflows including:
-
-✅ CRUD API Testing  
-✅ Dynamic Data Handling  
-✅ Runtime Variable Injection  
-✅ API Chaining  
-✅ Response Validation  
-✅ Automated Assertions  
-✅ JSON Validation  
-✅ Newman CLI Execution  
-✅ HTML Dashboard Reporting  
+The project simulates real-world API automation workflows by validating complete CRUD operations and generating professional execution reports.
 
 ---
 
@@ -45,12 +48,35 @@ https://thetestingworldapi.com/api
 
 | Technology | Purpose |
 |---|---|
-| Postman | API Testing |
-| Newman | Collection Automation |
+| Postman | API Testing & Automation |
+| Newman | Collection Execution |
 | Newman HTML Extra | HTML Dashboard Reporting |
-| JavaScript | Assertions & Scripting |
+| JavaScript | Assertions & Runtime Scripting |
 | JSON | Request & Response Handling |
-| GitHub | Version Control |
+| GitHub Pages | Live Report Hosting |
+| GitHub | Version Control & Portfolio |
+
+---
+
+# 🏗️ Framework Architecture
+
+```text
+Postman Collection
+        ↓
+Dynamic Variables
+        ↓
+Environment Variables
+        ↓
+API Chaining
+        ↓
+Assertions & Validations
+        ↓
+Newman CLI Execution
+        ↓
+HTML Dashboard Report
+        ↓
+GitHub Pages Hosting
+```
 
 ---
 
@@ -82,7 +108,7 @@ API-Testing-for-Student-Details/
 
 # 🔥 Complete API Workflow
 
-The collection performs a complete student lifecycle workflow.
+The framework executes a complete end-to-end student lifecycle workflow.
 
 ```text
 Get Student List
@@ -100,6 +126,8 @@ Create Student Address
 Get Final Student Details
         ↓
 Delete Student
+        ↓
+Verify Student Deletion
 ```
 
 ---
@@ -110,11 +138,11 @@ Delete Student
 
 # ✅ 1. Get Student List
 
-Retrieves all available student records.
+Retrieves all available student records from the server.
 
 ## Validations
 
-- Response code validation
+- Status code validation
 - Response time validation
 - Response size validation
 - JSON response validation
@@ -170,53 +198,44 @@ pm.environment.set("date_of_birth", date_of_birth);
 
 # ✅ 3. Get Specific Student
 
-Retrieves a specific student dynamically using stored student ID.
+Retrieves dynamically created student information using stored student ID.
 
 ## Validations
 
-- Response code validation
-- Student information validation
-- JSON validation
 - Status validation
-
----
-
-## Example Assertion
-
-```javascript
-pm.test("Verify the response code 200 or Not", function () {
-    pm.expect(pm.response.code).to.eql(200);
-});
-```
+- Response validation
+- JSON validation
+- Student information verification
 
 ---
 
 # ✅ 4. Update Student
 
-Updates previously created student information dynamically.
+Updates existing student information dynamically.
 
 ## Features
 
 - Runtime data update
-- Environment variable reuse
-- Response validation
+- Variable reuse
+- API chaining
+- Response verification
 
 ---
 
 # ✅ 5. Create Technical Skills
 
-Creates technical skill information dynamically.
+Creates dynamic technical skill information for the student.
 
 ## Features
 
 ✅ Dynamic Programming Languages  
-✅ Runtime Experience Generation  
-✅ Random Integer Generation  
+✅ Random Runtime Data  
 ✅ Environment Variable Injection  
+✅ API Data Linking  
 
 ---
 
-## Dynamic Skill Script
+## Example Dynamic Skill Script
 
 ```javascript
 var skills = [
@@ -238,14 +257,14 @@ pm.environment.set("lang2", lang2);
 
 # ✅ 6. Create Student Address
 
-Creates dynamic permanent address information.
+Creates permanent address information dynamically.
 
 ## Features
 
 - Dynamic city generation
 - Dynamic country generation
 - Dynamic phone numbers
-- UUID generation
+- Runtime UUID generation
 
 ---
 
@@ -293,16 +312,18 @@ Creates dynamic permanent address information.
 
 Validates final combined student information after all API operations.
 
-This ensures:
-- Student creation succeeded
-- Technical skills linked properly
-- Address information stored correctly
+## Verification Includes
+
+- Student creation validation
+- Technical skill linking validation
+- Address information validation
+- Complete workflow verification
 
 ---
 
 # ✅ 8. Delete Student
 
-Deletes the dynamically created student.
+Deletes dynamically created student data.
 
 ## Validations
 
@@ -312,9 +333,22 @@ Deletes the dynamically created student.
 
 ---
 
+# ✅ 9. Verify Student Deletion
+
+Confirms that the deleted student resource no longer exists.
+
+## Features
+
+✅ Negative API Testing  
+✅ Resource Validation  
+✅ Response Verification  
+✅ Workflow Integrity Validation  
+
+---
+
 # 🧠 Dynamic Variables Used
 
-This project heavily uses Postman Dynamic Variables to simulate real-world runtime testing.
+This project heavily uses Postman Dynamic Variables to simulate real-world runtime automation.
 
 | Variable | Purpose |
 |---|---|
@@ -322,7 +356,7 @@ This project heavily uses Postman Dynamic Variables to simulate real-world runti
 | `{{$randomLastName}}` | Random surname |
 | `{{$randomCity}}` | Dynamic city |
 | `{{$randomCountry}}` | Dynamic country |
-| `{{$randomPhoneNumber}}` | Dynamic phone number |
+| `{{$randomPhoneNumber}}` | Random phone number |
 | `{{$randomUUID}}` | Unique identifier |
 | `{{$randomInt}}` | Random integer |
 
@@ -330,21 +364,24 @@ This project heavily uses Postman Dynamic Variables to simulate real-world runti
 
 # 🔥 Assertions Implemented
 
-The framework includes comprehensive validations:
+The framework includes comprehensive API validations.
 
 ✅ HTTP Status Code Validation  
 ✅ Response Time Validation  
 ✅ Response Size Validation  
 ✅ JSON Validation  
 ✅ Dynamic Data Matching  
-✅ API Business Logic Validation  
+✅ Business Logic Validation  
+✅ Delete API Validation  
+✅ CRUD Workflow Validation  
 ✅ Environment Variable Validation  
+✅ Negative Testing  
 
 ---
 
-## Example Assertions
+# 📌 Example Assertions
 
-### Status Code Validation
+## Status Code Validation
 
 ```javascript
 pm.expect(pm.response.code).to.eql(200);
@@ -352,7 +389,7 @@ pm.expect(pm.response.code).to.eql(200);
 
 ---
 
-### Response Time Validation
+## Response Time Validation
 
 ```javascript
 pm.expect(pm.response.responseTime).to.be.below(3000);
@@ -360,7 +397,7 @@ pm.expect(pm.response.responseTime).to.be.below(3000);
 
 ---
 
-### JSON Validation
+## JSON Validation
 
 ```javascript
 pm.response.to.be.json;
@@ -368,7 +405,7 @@ pm.response.to.be.json;
 
 ---
 
-### Dynamic Data Validation
+## Dynamic Data Validation
 
 ```javascript
 pm.expect(pm.environment.get("first_name"))
@@ -383,15 +420,16 @@ The project generates a professional Newman HTML dashboard report after executio
 
 ---
 
-## 📈 Report Summary
+# 📈 Execution Summary
 
 | Metric | Result |
 |---|---|
-| Total Requests | 8 |
-| Total Assertions | 82 |
+| Total Requests | 9 |
+| Total Assertions | 88 |
 | Failed Tests | 2 |
 | Skipped Tests | 0 |
-| Average Response Time | 175ms |
+| Average Response Time | 199ms |
+| Total Run Duration | 2.2s |
 
 ---
 
@@ -405,7 +443,30 @@ The project generates a professional Newman HTML dashboard report after executio
 
 ## 🔗 View Live Report
 
-https://mostafizur-zahid.github.io/API-Testing-for-Student-Details/report.html
+### 🚀 https://mostafizur-zahid.github.io/API-Testing-for-Student-Details/report.html
+
+---
+
+# ⚠️ Known Assertion Notes
+
+Two assertions intentionally failed because the API server returned:
+
+```text
+200 OK
+```
+
+instead of:
+
+```text
+201 Created
+```
+
+for:
+
+- Create Technical Skills API
+- Create Student Address API
+
+This issue originates from the API server implementation itself, not from the automation framework.
 
 ---
 
@@ -421,7 +482,7 @@ npm install -g newman
 
 ---
 
-# ✅ Install HTML Reporter
+# ✅ Install Newman HTML Reporter
 
 ```bash
 npm install -g newman-reporter-htmlextra
@@ -429,7 +490,7 @@ npm install -g newman-reporter-htmlextra
 
 ---
 
-# ✅ Run Collection
+# ✅ Execute Collection
 
 ```bash
 newman run Rest_API_Testing_For_Student_Details.postman_collection.json \
@@ -474,49 +535,69 @@ stId
 This project demonstrates practical experience with:
 
 ✅ REST API Automation  
-✅ Postman Scripting  
-✅ Dynamic Runtime Variables  
-✅ Newman CLI Automation  
-✅ JSON Validation  
+✅ CRUD API Testing  
+✅ Postman JavaScript Scripting  
+✅ Dynamic Variables Handling  
+✅ Environment Variable Management  
 ✅ API Chaining  
-✅ Environment Management  
+✅ Newman CLI Automation  
 ✅ Automated HTML Reporting  
 ✅ Runtime Assertions  
-✅ Professional API Workflow Testing  
+✅ Response Validation  
+✅ Negative Testing  
+✅ Professional API Workflow Design  
 
 ---
 
 # 🔥 Project Highlights
 
-✅ Real-world API automation workflow  
-✅ Runtime-generated testing data  
-✅ Dynamic environment variable injection  
-✅ End-to-end API lifecycle testing  
-✅ Professional Newman HTML dashboard  
-✅ Structured automation architecture  
-✅ Portfolio-ready project design  
+✅ Complete End-to-End CRUD API Automation  
+✅ Runtime Dynamic Data Generation  
+✅ Professional Newman HTML Dashboard  
+✅ GitHub Pages Live Reporting  
+✅ Environment Variable Chaining  
+✅ Portfolio-Ready Project Architecture  
+✅ Real-World Automation Workflow  
+✅ Advanced Postman Scripting  
 
 ---
 
 # 👨‍💻 Author
 
-## Md. Mostafizur Rahman Zahid 
+# Md. Mostafizur Rahman Zahid
 
 🎓 CSE Graduate  
 🔐 Aspiring Security Engineer  
 🧪 SQA & API Automation Enthusiast  
 ⚡ Cybersecurity & DevSecOps Learner  
+🤖 NLP Researcher  
 
 ---
 
-# 🔗 LinkedIn
+# 🔗 Connect With Me
+
+## LinkedIn
 
 https://www.linkedin.com/in/mostafizur-zahid/
 
 ---
 
-# ⭐ GitHub Repository
+## GitHub
+
+https://github.com/mostafizur-zahid
+
+---
+
+# ⭐ Repository
+
+## API Testing for Student Details
 
 https://github.com/mostafizur-zahid/API-Testing-for-Student-Details
 
 ---
+
+<div align="center">
+
+### 🌟 If you found this project helpful, consider giving it a star on GitHub.
+
+</div>
